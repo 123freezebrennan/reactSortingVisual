@@ -345,6 +345,8 @@ export default class Sort extends React.Component{
         for (let i = 0; i < this.values; i++){
             this.state.arr[i].setDigit(r[i]);
         }
+        this.setState(this.state.arr);
+        
     }
     
     async bogoSort(){
@@ -352,11 +354,11 @@ export default class Sort extends React.Component{
             this.sort = true;
         var sorted = await this.isSorted();
         while(sorted === false){
+            if (!this.sort)
+                return;
             await sleep(this.speed);
             this.shuffle();
             sorted = await this.isSorted();
-            if (!this.sort)
-                return;
         }
     }
 
@@ -393,7 +395,7 @@ export default class Sort extends React.Component{
                 <div className = "slider">
                 <RangeSlider 
                         className = "values"
-                        min = {10}
+                        min = {3}
                         max = {100}
                         value = {this.values}
                         onChange={e => this.setValues(e.target.value)}
