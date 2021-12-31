@@ -395,7 +395,7 @@ export default class Sort extends React.Component{
                 <div className = "slider">
                 <RangeSlider 
                         className = "values"
-                        min = {3}
+                        min = {10}
                         max = {100}
                         value = {this.values}
                         onChange={e => this.setValues(e.target.value)}
